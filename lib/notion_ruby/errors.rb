@@ -74,7 +74,7 @@ end
 # @api private
 module Faraday
   class Response
-    class RaiseGheeError < Response::Middleware
+    class RaiseNotionRubyError < Response::Middleware
       ERROR_MAP = {
         400 => NotionRuby::BadRequest,
         401 => NotionRuby::Unauthorized,

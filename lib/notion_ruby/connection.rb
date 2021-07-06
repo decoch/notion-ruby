@@ -19,7 +19,7 @@ class NotionRuby
 
       super(hash[:api_url] || "https://api.notion.com") do |builder|
         yield builder if block_given?
-        builder.use Faraday::Response::RaiseGheeError
+        builder.use Faraday::Response::RaiseNotionRubyError
         builder.use FaradayMiddleware::EncodeJson
         builder.use FaradayMiddleware::ParseJson, content_type: /\bjson$/
         builder.adapter Faraday.default_adapter
