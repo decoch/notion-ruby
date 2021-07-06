@@ -10,6 +10,14 @@ class NotionRuby
     #
     module Databases
       class Proxy < ::NotionRuby::ResourceProxy
+
+        # Query databases
+        #
+        # Returns json
+        #
+        def query(params)
+          connection.post("#{path_prefix}/query", params).body
+        end
       end
 
       # Get databases
