@@ -6,11 +6,13 @@ require_relative "notion_ruby/errors"
 require_relative "notion_ruby/state_methods"
 require_relative "notion_ruby/resource_proxy"
 require_relative "notion_ruby/api/databases"
+require_relative "notion_ruby/api/pages"
 
 class NotionRuby
   attr_reader :connection
 
   include NotionRuby::API::Databases
+  include NotionRuby::API::Pages
 
   def initialize(options = {}, &block)
     @options = options
