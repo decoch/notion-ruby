@@ -34,6 +34,6 @@ Gem::Specification.new do |spec|
   spec.add_dependency 'highline', '~> 1.6.15'
   spec.add_dependency 'typhoeus', '~> 0.7.0'
 
-  # For more information and examples about making a new gem, checkout our
-  # guide at: https://bundler.io/guides/creating_gem.html
+  spec.add_development_dependency 'vcr'
+  spec.add_development_dependency 'webmock'
 end
