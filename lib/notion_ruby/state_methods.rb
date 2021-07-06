@@ -1,6 +1,7 @@
-class NotionRuby
-  module CUD
+# frozen_string_literal: true
 
+class NotionRuby
+  module CRUD
     # Create
     #
     # return json

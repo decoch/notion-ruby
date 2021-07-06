@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 require "notion_ruby"
-require 'vcr'
-require 'webmock/rspec'
+require "vcr"
+require "webmock/rspec"
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
@@ -17,23 +17,23 @@ RSpec.configure do |config|
 end
 
 VCR.configure do |config|
-  config.cassette_library_dir = 'spec/cassettes'
+  config.cassette_library_dir = "spec/cassettes"
   config.hook_into :webmock
   config.default_cassette_options = { record: :new_episodes }
   config.configure_rspec_metadata!
   config.before_record do |i|
-    if ENV.key?('NOTION_API_TOKEN')
-      i.request.headers['Authorization'].first.gsub!(ENV['NOTION_API_TOKEN'], '<NOTION_API_TOKEN>')
+    if ENV.key?("NOTION_API_TOKEN")
+      i.request.headers["Authorization"].first.gsub!(ENV["NOTION_API_TOKEN"], "<NOTION_API_TOKEN>")
     end
-    i.response.body.force_encoding('UTF-8')
+    i.response.body.force_encoding("UTF-8")
   end
 end
 
-if File.exists? File.expand_path("../settings.yml", __FILE__)
-  settings = YAML.load_file(File.expand_path('../settings.yml', __FILE__))
-  NOTION_TOKEN = settings['access_token']
-  NOTION_VERSION = settings['version']
+if File.exist? File.expand_path("settings.yml", __dir__)
+  settings = YAML.load_file(File.expand_path("settings.yml", __dir__))
+  NOTION_TOKEN = settings["access_token"]
+  NOTION_VERSION = settings["version"]
 else
-  NOTION_TOKEN = ENV['TOKEN']
-  NOTION_VERSION = ENV['VERSION']
+  NOTION_TOKEN = ENV["TOKEN"]
+  NOTION_VERSION = ENV["VERSION"]
 end

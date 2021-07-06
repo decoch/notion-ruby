@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 require_relative "notion_ruby/version"
-require_relative 'notion_ruby/connection'
-require_relative 'notion_ruby/errors'
-require_relative 'notion_ruby/state_methods'
-require_relative 'notion_ruby/resource_proxy'
-require_relative 'notion_ruby/api/databases'
+require_relative "notion_ruby/connection"
+require_relative "notion_ruby/errors"
+require_relative "notion_ruby/state_methods"
+require_relative "notion_ruby/resource_proxy"
+require_relative "notion_ruby/api/databases"
 
 class NotionRuby
   attr_reader :connection

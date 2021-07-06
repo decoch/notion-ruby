@@ -1,5 +1,6 @@
-class NotionRuby
+# frozen_string_literal: true
 
+class NotionRuby
   # ResourceProxy lets us create a virtual
   # proxy for any API resource, utilizing
   # method_missing to handle passing
@@ -7,9 +8,11 @@ class NotionRuby
   #
   class ResourceProxy
     # Undefine methods that might get in the way
-    instance_methods.each { |m| undef_method m unless m =~ /^__|instance_eval|instance_variable_get|object_id|respond_to|class/ }
+    instance_methods.each do |m|
+      undef_method m unless m =~ /^__|instance_eval|instance_variable_get|object_id|respond_to|class/
+    end
 
-    include NotionRuby::CUD
+    include NotionRuby::CRUD
 
     # Make connection and path_prefix readable
     attr_reader :connection, :path_prefix, :params, :id
@@ -44,6 +47,10 @@ class NotionRuby
       subject.send(message, *args, &block)
     end
 
+    def respond_to_missing?(symbol, _include_private)
+      subject.keys(symbol)
+    end
+
     # Raw is the raw response from the faraday
     # Use this if you need access to status codes
     # or header values
@@ -60,15 +67,16 @@ class NotionRuby
     def subject
       @subject ||= connection.get(path_prefix) do |req|
         req.params.merge! params
-        @block.call(req) if @block
+        @block&.call(req)
       end.body
     end
 
     def build_prefix(first_argument, endpoint)
-      (!first_argument.is_a?(Hash) && !first_argument.nil?) ?
-        File.join(path_prefix, "/#{endpoint}/#{first_argument}") : File.join(path_prefix, "/#{endpoint}")
+      if !first_argument.is_a?(Hash) && !first_argument.nil?
+        File.join(path_prefix, "/#{endpoint}/#{first_argument}")
+      else
+        File.join(path_prefix, "/#{endpoint}")
+      end
     end
-
-    private
   end
 end

@@ -1,5 +1,7 @@
-require 'json/ext'
-require 'multi_json'
+# frozen_string_literal: true
+
+require "json/ext"
+require "multi_json"
 
 class NotionRuby
   # Custom error class for rescuing from all Notion errors
@@ -18,12 +20,23 @@ class NotionRuby
     def build_error_message
       return nil if @response.nil?
 
-      message = response_body ? "#{response_body["error"] || response_body["message"] || ''}" : ''
-      errors = unless message.empty?
-                 response_body["errors"] ? " #{response_body["errors"].to_a.map { |e| e['message'] || e['code'] }.join(', ')} " : ''
-               end
-
       "#{message}#{errors}"
+    end
+
+    def message
+      response_body ? (response_body["error"] || response_body["message"] || "").to_s : ""
+    end
+
+    def errors
+      return if message.empty?
+
+      if response_body["errors"]
+        " #{response_body["errors"].to_a.map do |e|
+          e["message"] || e["code"]
+        end.join(", ")} "
+      else
+        ""
+      end
     end
   end
 
@@ -60,22 +73,24 @@ end
 
 # @api private
 module Faraday
-  class Response::RaiseGheeError < Response::Middleware
-    ERROR_MAP = {
-      400 => NotionRuby::BadRequest,
-      401 => NotionRuby::Unauthorized,
-      403 => NotionRuby::Forbidden,
-      406 => NotionRuby::NotAcceptable,
-      422 => NotionRuby::UnprocessableEntity,
-      500 => NotionRuby::InternalServerError,
-      501 => NotionRuby::NotImplemented,
-      502 => NotionRuby::BadGateway,
-      503 => NotionRuby::ServiceUnavailable
-    }
+  class Response
+    class RaiseGheeError < Response::Middleware
+      ERROR_MAP = {
+        400 => NotionRuby::BadRequest,
+        401 => NotionRuby::Unauthorized,
+        403 => NotionRuby::Forbidden,
+        406 => NotionRuby::NotAcceptable,
+        422 => NotionRuby::UnprocessableEntity,
+        500 => NotionRuby::InternalServerError,
+        501 => NotionRuby::NotImplemented,
+        502 => NotionRuby::BadGateway,
+        503 => NotionRuby::ServiceUnavailable
+      }.freeze
 
-    def on_complete(response)
-      key = response[:status].to_i
-      raise ERROR_MAP[key].new(response) if ERROR_MAP.has_key? key
+      def on_complete(response)
+        key = response[:status].to_i
+        raise ERROR_MAP[key], response if ERROR_MAP.key? key
+      end
     end
   end
 end

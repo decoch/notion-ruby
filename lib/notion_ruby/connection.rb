@@ -1,6 +1,8 @@
-require 'faraday'
-require 'faraday_middleware'
-require 'multi_json'
+# frozen_string_literal: true
+
+require "faraday"
+require "faraday_middleware"
+require "multi_json"
 
 class NotionRuby
   class Connection < Faraday::Connection
@@ -14,19 +16,17 @@ class NotionRuby
 
     def initialize(hash = {})
       @hash = hash
-      access_token = hash[:access_token] if hash.has_key?(:access_token)
-      version = hash[:version] if hash.has_key?(:version)
 
-      super(hash[:api_url] || 'https://api.notion.com') do |builder|
+      super(hash[:api_url] || "https://api.notion.com") do |builder|
         yield builder if block_given?
         builder.use Faraday::Response::RaiseGheeError
         builder.use FaradayMiddleware::EncodeJson
-        builder.use FaradayMiddleware::ParseJson, :content_type => /\bjson$/
+        builder.use FaradayMiddleware::ParseJson, content_type: /\bjson$/
         builder.adapter Faraday.default_adapter
       end
 
-      self.headers["Authorization"] = "Bearer #{access_token}" if access_token
-      self.headers["Notion-Version"] = version if version
+      headers["Authorization"] = "Bearer #{hash[:access_token]}" if hash.key?(:access_token)
+      headers["Notion-Version"] = hash[:version] if hash.key?(:version)
     end
   end
 end

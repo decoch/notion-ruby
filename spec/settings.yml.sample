@@ -1,2 +1,2 @@
-access_token: 'Bearer secret_dummy'
+access_token: 'secret_dummy'
 version: '2021-05-13'
