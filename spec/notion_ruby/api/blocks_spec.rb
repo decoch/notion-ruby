@@ -9,7 +9,7 @@ RSpec.describe NotionRuby::API::Blocks do
         {
           object: "block",
           type: "heading_2",
-          heading_2: { text: [{ type: "text", text: { content: "Lacinato kale" } }] }
+          heading_2: { text: [{ type: "text", text: { content: "Lacinato kale" } }] } # rubocop:disable Style/VariableNumber
         },
         {
           object: "block",
