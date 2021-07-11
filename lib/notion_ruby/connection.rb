@@ -26,7 +26,7 @@ class NotionRuby
       end
 
       headers["Authorization"] = "Bearer #{hash[:access_token]}" if hash.key?(:access_token)
-      headers["Notion-Version"] = hash[:version] if hash.key?(:version)
+      headers["Notion-Version"] = NOTION_VERSION
     end
   end
 end

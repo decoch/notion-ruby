@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe NotionRuby::API::Users do
-  let(:notion) { NotionRuby.new(access_token: NOTION_TOKEN, version: NOTION_VERSION) }
+  let(:notion) { NotionRuby.new(access_token: NOTION_TOKEN) }
   let(:id) { "47bd6f41-3798-354a-749a-a6d229b974aa" }
 
   it "return a user", vcr: { cassette_name: "user" } do

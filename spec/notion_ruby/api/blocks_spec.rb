@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 RSpec.describe NotionRuby::API::Blocks do
-  let(:notion) { NotionRuby.new(access_token: NOTION_TOKEN, version: NOTION_VERSION) }
+  let(:notion) { NotionRuby.new(access_token: NOTION_TOKEN) }
   let(:id) { "33dfce72-6c0b-b713-65bd-839f47aa68f2" }
   let(:append_param) do
     {
