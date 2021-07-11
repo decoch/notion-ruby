@@ -1,0 +1,63 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://api.notion.com/v1/users/47bd6f41-3798-354a-749a-a6d229b974aa
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v0.17.4
+      Authorization:
+      - Bearer secret_dummy
+      Notion-Version:
+      - '2021-05-13'
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sun, 11 Jul 2021 11:12:48 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Dns-Prefetch-Control:
+      - 'off'
+      X-Frame-Options:
+      - SAMEORIGIN
+      Strict-Transport-Security:
+      - max-age=5184000; includeSubDomains
+      X-Download-Options:
+      - noopen
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      Referrer-Policy:
+      - same-origin
+      Etag:
+      - W/"ff-DE5dgvWPd/EkyoHWXvl21rblslE"
+      Vary:
+      - Accept-Encoding
+      Cf-Cache-Status:
+      - DYNAMIC
+      Expect-Ct:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 66d1994abc532331-NRT
+    body:
+      encoding: UTF-8
+      string: '{"object":"user","id":"47bd6f41-3798-354a-749a-a6d229b974aa","name":"example","avatar_url":"dummy","type":"person","person":{"email":"notion@example.com"}}'
+  recorded_at: Sun, 11 Jul 2021 11:12:48 GMT
+recorded_with: VCR 6.0.0

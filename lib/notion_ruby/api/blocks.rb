@@ -4,7 +4,7 @@ class NotionRuby
   module API
     module Blocks
       module Children
-        class ChildrenProxy < ::NotionRuby::ResourceProxy
+        class Proxy < ::NotionRuby::ResourceProxy
           def append(params)
             connection.patch(path_prefix, params).body
           end
@@ -14,7 +14,7 @@ class NotionRuby
       class Proxy < ::NotionRuby::ResourceProxy
         def children
           prefix = "#{path_prefix}/children"
-          NotionRuby::API::Blocks::Children::ChildrenProxy.new(connection, prefix.name, &block)
+          NotionRuby::API::Blocks::Children::Proxy.new(connection, prefix)
         end
       end
 

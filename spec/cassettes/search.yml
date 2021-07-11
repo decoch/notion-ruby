@@ -1,0 +1,65 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://api.notion.com/v1/search
+    body:
+      encoding: UTF-8
+      string: '{"query":"Books"}'
+    headers:
+      User-Agent:
+      - Faraday v0.17.4
+      Authorization:
+      - Bearer secret_dummy
+      Notion-Version:
+      - '2021-05-13'
+      Content-Type:
+      - application/json
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Sun, 11 Jul 2021 11:08:20 GMT
+      Content-Type:
+      - application/json; charset=utf-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      X-Dns-Prefetch-Control:
+      - 'off'
+      X-Frame-Options:
+      - SAMEORIGIN
+      Strict-Transport-Security:
+      - max-age=5184000; includeSubDomains
+      X-Download-Options:
+      - noopen
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      Referrer-Policy:
+      - same-origin
+      Etag:
+      - W/"2fc-yFr2djgjhiSCKfLVY4MRdi02t0o"
+      Vary:
+      - Accept-Encoding
+      Cf-Cache-Status:
+      - DYNAMIC
+      Expect-Ct:
+      - max-age=604800, report-uri="https://report-uri.cloudflare.com/cdn-cgi/beacon/expect-ct"
+      Server:
+      - cloudflare
+      Cf-Ray:
+      - 66d192bc9eb32071-NRT
+    body:
+      encoding: UTF-8
+      string: '{"object":"list","results":[{"object":"database","id":"04a28729-f844-5dbd-3e7f-e58aba9ce0db","created_time":"2021-03-20T00:52:00.000Z","last_edited_time":"2021-07-05T13:01:00.000Z","title":[{"type":"text","text":{"content":"Books","link":null},"annotations":{"bold":false,"italic":false,"strikethrough":false,"underline":false,"code":false,"color":"default"},"plain_text":"Books","href":null}],"properties":{"Date":{"id":"<>p:","type":"date","date":{}},"Tags":{"id":"L:lO","type":"multi_select","multi_select":{"options":[]}},"Name":{"id":"title","type":"title","title":{}},"URL":{"id":"2403b9ff-ee3b-2029-b63b-685d4ded1461","type":"url","url":{}}},"parent":{"type":"page_id","page_id":"bef5a1d3-12db-8544-815c-c6b53eba8b4c"}}],"next_cursor":null,"has_more":false}'
+  recorded_at: Sun, 11 Jul 2021 11:08:20 GMT
+recorded_with: VCR 6.0.0

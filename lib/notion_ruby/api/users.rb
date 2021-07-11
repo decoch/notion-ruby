@@ -6,7 +6,7 @@ class NotionRuby
       class Proxy < ::NotionRuby::ResourceProxy
       end
 
-      def users(id, params = {})
+      def users(id = nil, params = {})
         params = id if id.is_a? Hash
         path_prefix = !id.is_a?(Hash) && id ? "/v1/users/#{id}" : "/v1/users"
         Proxy.new(connection, path_prefix, params)

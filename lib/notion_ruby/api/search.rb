@@ -7,7 +7,8 @@ class NotionRuby
       end
 
       def search(params = {})
-        Proxy.new(connection, "/v1/search", params)
+        path_prefix = "/v1/search"
+        connection.post(path_prefix, params).body
       end
     end
   end
