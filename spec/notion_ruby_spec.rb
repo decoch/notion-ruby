@@ -6,7 +6,7 @@ RSpec.describe NotionRuby do
   end
 
   it "handle as a object with mashify", vcr: { cassette_name: "database" } do
-    notion = NotionRuby.new(access_token: NOTION_TOKEN) do |builder|
+    notion = described_class.new(access_token: NOTION_TOKEN) do |builder|
       builder.use FaradayMiddleware::Mashify
     end
     databases = notion.databases("30f8638c-7bac-bd1c-62bf-81ce1fdb8069")
