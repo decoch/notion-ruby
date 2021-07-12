@@ -27,12 +27,11 @@ Gem::Specification.new do |spec|
   spec.executables   = spec.files.grep(%r{\Aexe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
 
-  spec.add_dependency "faraday", "~> 0.9"
-  spec.add_dependency "faraday_middleware", "~> 0.9"
-  spec.add_dependency "hashie", "~> 3.3.2"
-  spec.add_dependency "highline", "~> 1.6.15"
+  spec.add_dependency "faraday", "~> 1.0"
+  spec.add_dependency "faraday_middleware", "~> 1.0"
+  spec.add_dependency "hashie", "~> 4.0"
   spec.add_dependency "multi_json", "~> 1.3"
-  spec.add_dependency "typhoeus", "~> 0.7.0"
+  spec.add_dependency "typhoeus", "~> 1.0"
 
   spec.add_development_dependency "vcr"
   spec.add_development_dependency "webmock"
